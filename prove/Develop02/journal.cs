@@ -14,7 +14,7 @@ public class Journal
     {
         foreach(string question in questions)
         {
-            string oneQuestion = Console.ReadLine(questions);
+            string oneQuestion = Console.WriteLine(questions);
             Console.WriteLine($"{oneQuestion}");
         }
     }
