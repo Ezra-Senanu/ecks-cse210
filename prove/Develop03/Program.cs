@@ -1,5 +1,3 @@
-using System;
-
 public class Program{
        static void Main(string[] args)
     {
@@ -23,4 +21,5 @@ public class Program{
         {
             Console.Write("\nWelcome to the scripture Memorizer game, press enter to hide words, or type 'quit' to end the game. ");
         }
+    }
     }
