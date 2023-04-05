@@ -1,31 +1,59 @@
-public class ListingActivity : Activity
+using System;
+
+class ListingActivity : Activity
 {
-    public List<string> Prompts { get; set; }
-    public override void RunActivity()
+    private List <string> _prompts = new List<string>();
+    private List <string> _answers= new List<string>();
+    private List <string> _totalAnswers= new List<string>();
+    
+    private Random _randomPrompt = new Random();
+    private DateTime _startTime;
+    private DateTime _futureTime;
+    private DateTime _currentTime;
+    private string _tempAnswer;
+
+    public ListingActivity()
     {
-        Console.WriteLine($"Starting {Name} which will last for {Duration} seconds.");
-        Console.WriteLine($"Description: {Description}");
-        Console.WriteLine("Prepare to begin...");
-
-        System.Threading.Thread.Sleep(5000);
-
-        Random random = new Random();
-        int promptIndex = random.Next(0, Prompts.Count - 1);
-        Console.WriteLine(Prompts[promptIndex]);
-
-        System.Threading.Thread.Sleep(Duration * 1000);
-
-        Console.WriteLine("Start listing...");
-        int itemCount = 0;
-        while (Duration > 0)
-        {
-            string input = Console.ReadLine();
-            itemCount++;
-            Duration--;
-        }
-
-        Console.WriteLine("Good job!");
-        Console.WriteLine($"You have completed the {Name} activity for {Duration} seconds and listed {itemCount} items.");
-        Console.WriteLine("Thank you for participating.");
+        SetExplanation("This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
+        SetPrompts();
     }
+
+    public void ListActivity()
+    {
+        SetActivity("Listing");
+        SetActivitySeconds(GetTime());
+        SetActivityTime();
+        Console.WriteLine("List as many responses you can to the following prompt:");
+        Console.WriteLine($"---{_prompts[_randomPrompt.Next(0,4)]}---");
+        BeginningCountdown();
+        _startTime = DateTime.Now;
+        _futureTime = _startTime.AddSeconds(GetTime());
+        _answers.Clear();
+        while(_currentTime <= _futureTime)
+        {
+            List();
+            _currentTime = DateTime.Now;
+        }
+        SetFinish($"You have completed {GetTime()} seconds of the Reflecting Activity");
+        Console.WriteLine($"You listed {_answers.Count()} items!");
+        FinishActivity();
+
+    }
+
+    public void List()
+    {
+        Console.Write(">");
+        _tempAnswer = Console.ReadLine();
+        _answers.Add(_tempAnswer);   
+        _totalAnswers.Add(_tempAnswer); 
+    }
+    public void SetPrompts()
+    {
+        _prompts.Add("Who are people that you appreciate?");
+        _prompts.Add("What are personal strengths of yours?");
+        _prompts.Add("Who are people that you have helped this week?");
+        _prompts.Add("When have you felt the Holy Ghost this month?");
+        _prompts.Add("Who are some of your personal heroes?");
+    }
+
 }
