@@ -1,51 +1,21 @@
-using static System.Console;
-using System.IO;
+using System;
 
-public abstract class Goal
-{
-    protected string _goalName;
-    protected string _description;
-    protected int _points = 0;
-    protected bool _completed = false;
+class Goal {
+    public string name;
+    public GoalType type;
+    public int value;
+    public int count;
+    public int targetCount;
+    public int bonusPoints;
+    public bool completed;
 
-    public Goal()
-    {
-        Write("What is the name of your goal? ");
-        this._goalName = ReadLine();
-        Write("What is a short description of it? ");
-        this._description = ReadLine();
-        Write("What is the amount of points associated with this goal? ");
-        this._points = int.Parse(ReadLine());
+    public Goal(string name, GoalType type, int value, int count, int targetCount, int bonusPoints) {
+        this.name = name;
+        this.type = type;
+        this.value = value;
+        this.count = count;
+        this.targetCount = targetCount;
+        this.bonusPoints = bonusPoints;
+        this.completed = false;
     }
-
-    public Goal(string goalName, string description, int points)
-    {
-    }
-    public Goal(string goalName, string description, int points, bool completed)
-    {
-    }
-    public int GetPoints()
-    {
-        return this._points;
-    }
-    public virtual void RecordEvent()
-    {
-        this._completed = true;
-    }
-    public virtual bool IsComplete()
-    {
-        return this._completed = true;
-    }
-    public virtual void GetGoalList1(int number)
-    {
-        WriteLine($"{number}. [ ] {this._goalName} ({this._description})"); 
-    }
-    public virtual void GetGoalList2(int number)
-    {
-        WriteLine($"{number}. {this._goalName}"); 
-    }
-    public virtual string SaveGoal()
-    {
-        return $"{_goalName},{_description},{_points},{_completed}";
-    }
-}
+    
