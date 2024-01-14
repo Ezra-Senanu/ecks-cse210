@@ -18,4 +18,5 @@ class Program {
                 user.RecordEvent(input);
             }
         }
-    }
+    }6
+    

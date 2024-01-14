@@ -1,13 +1,13 @@
 using System;
 
 class Goal {
-    public string name;
-    public GoalType type;
-    public int value;
-    public int count;
-    public int targetCount;
-    public int bonusPoints;
-    public bool completed;
+    private string name;
+    private GoalType type;
+    private int value;
+    private int count;
+    private int targetCount;
+    private int bonusPoints;
+    private bool completed;
 
     public Goal(string name, GoalType type, int value, int count, int targetCount, int bonusPoints) {
         this.name = name;
